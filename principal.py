@@ -1,34 +1,42 @@
-from usuario1 import Usuario
-from carro1 import Carro
-from estacionamiento import Estacionamiento
+from cocina import Cocina
+from cuchillo import Cuchillo
+from vegetal import Cebolla, Tomate
+from Olla import Olla
+from pastas import Pastas
 
-nombre = input ("ingrese nombre del cliente: ")
-cedula = int(input("ingrese cedula del cliente: "))
-tipo_cliente = ("ingrese tipo de cliente: ")
-obj_cliente = (nombre,cedula,tipo_cliente)
+cocina = Cocina()
 
-placa = input ("ingrese placa del carro: ")
-marca = input ("ingrese la marca del carro: ")
-color = input ("ingrese color del carro: ")
-obj_carro = Carro(placa,marca,color)
+if cocina.verificar_objetos():  
 
-obj_estacionamiento = Estacionamiento()
+    cuchillo = Cuchillo(100)
+    cebolla = Cebolla("Cebolla", 100)
+    tomate = Tomate("Tomate", 100)
 
-puesto = int(input("ingrese el numero de puesto: "))
-obj_estacionamiento.set_puesto = (puesto)
-obj_estacionamiento.registrar_Entrada(obj_cliente,obj_carro)
-obj_estacionamiento.guardar()
+    while cebolla.esta_vivo():
+        cuchillo.cortar(cebolla)
+        if cuchillo.esta_inutil():
+            cuchillo.afilar()
 
-obj_estacionamiento.mostrar_info()
+    cebolla.morir()
 
+    while tomate.esta_vivo():
+        cuchillo.cortar(tomate)
+        if cuchillo.esta_inutil():
+            cuchillo.afilar()
 
-registrar_salida = input("¿Desea ingresar la salida de un carro? [si/no] ")
+    tomate.morir()
 
-if registrar_salida.lower() == "si":
-    
-    placa = input("ingrese la placa del carro para dar salida: ")
-    
-    obj_estacionamiento.registrar_salida(placa)
-    obj_estacionamiento.guardar()
+    olla = Olla()
+    olla.agregar("Cebolla")
+    olla.agregar("Tomate")
 
-obj_estacionamiento.mostrar_info()
+    pastas = Pastas()
+
+    while not pastas.listas():
+        opcion = input("Deseas seguir hirviendo? (si o no): ")
+        if opcion == "si":
+            pastas.hervir()
+        else:
+            print("Debes seguir hirviendo")
+
+    olla.servir()
